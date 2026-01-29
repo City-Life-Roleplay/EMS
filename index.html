@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centrale EMS - City Life Roleplay</title>
+    <title>Bandi EMS - City Life Roleplay</title>
     <style>
-        /* SFONDO E LAYOUT GENERALI */
+        /* STILE GENERALE CITY LIFE */
         body { 
             background: radial-gradient(circle, #1a0a0a 0%, #0a0a0a 100%); 
             color: white; 
@@ -18,23 +18,7 @@
             padding: 20px;
         }
 
-        /* LOGO ANIMATO */
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .logo-ems {
-            width: 120px;
-            filter: drop-shadow(0 0 10px rgba(255, 77, 77, 0.6));
-            animation: pulse 2.5s infinite ease-in-out;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.4)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(255, 77, 77, 0.8)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.4)); }
-        }
-
-        /* CONTENITORE NEON */
+        /* CONTENITORE CON EFFETTO NEON */
         .container { 
             background: rgba(30, 30, 30, 0.95); 
             padding: 35px; 
@@ -44,28 +28,22 @@
             max-width: 500px; 
             border: 1px solid rgba(255, 77, 77, 0.3);
             position: relative;
-            overflow: hidden;
         }
 
-        /* INDICATORE BANDI APERTI */
-        .status-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 255, 100, 0.1);
-            color: #00ff64;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            font-weight: bold;
-            border: 1px solid #00ff64;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .logo-container { text-align: center; margin-bottom: 20px; }
+        .logo-ems {
+            width: 110px;
+            filter: drop-shadow(0 0 10px rgba(255, 77, 77, 0.6));
+            animation: pulse 2.5s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        h2 { text-align: center; color: #ff4d4d; margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
-        p.subtitle { text-align: center; color: #888; font-size: 0.9em; margin-bottom: 25px; }
-
+        h2 { text-align: center; color: #ff4d4d; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+        
         label { display: block; margin-bottom: 8px; color: #ff4d4d; font-size: 0.8em; font-weight: bold; text-transform: uppercase; }
         
         input, textarea { 
@@ -82,7 +60,6 @@
         }
         input:focus, textarea:focus { border-color: #ff4d4d; box-shadow: 0 0 10px rgba(255, 77, 77, 0.3); }
 
-        /* BOTTONE */
         button { 
             width: 100%; 
             padding: 16px; 
@@ -95,93 +72,35 @@
             transition: 0.4s; 
             font-size: 1.1em; 
             text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
         }
-        button:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 77, 77, 0.5); filter: brightness(1.2); }
-        button:disabled { background: #444; cursor: not-allowed; transform: none; }
+        button:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 77, 77, 0.5); }
+        button:disabled { background: #444; cursor: not-allowed; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="status-badge">● Bandi Aperti</div>
-    
     <div class="logo-container">
         <img src="https://i.imgur.com/4E7S7uM.png" class="logo-ems" alt="Logo City Life">
     </div>
 
-    <h2>Centrale EMS</h2>
-    <p class="subtitle">Modulo di Arruolamento Medico - City Life</p>
+    <h2>Bandi EMS</h2>
     
     <form id="emsForm">
-        <label>Identità In-Game</label>
-        <input type="text" id="nome" placeholder="Nome e Cognome IC" required>
+        <label>Nome e Cognome IC</label>
+        <input type="text" id="nome" placeholder="Mario Rossi" required>
 
-        <label>Recapito Discord</label>
-        <input type="text" id="discord" placeholder="Esempio: nomeutente#0000" required>
+        <label>ID Discord</label>
+        <input type="text" id="discord" placeholder="utente#0000" required>
 
-        <label>Contatto Telefonico IC</label>
-        <input type="text" id="telefono" placeholder="Numero di telefono in città" required>
+        <label>Numero di Telefono IC</label>
+        <input type="text" id="telefono" placeholder="Es: 555-1234" required>
 
-        <label>Disponibilità Settimanale</label>
-        <input type="text" id="orari" placeholder="Esempio: Tutti i giorni 15:00-20:00" required>
+        <label>Disponibilità Oraria</label>
+        <input type="text" id="orari" placeholder="Es: Pomeriggio e Sera" required>
 
-        <label>Curriculum e Motivazioni</label>
-        <textarea id="motivo" rows="5" placeholder="Perché dovremmo sceglierti? Hai esperienze pregresse?" required></textarea>
+        <label>Esperienze e Motivazioni</label>
+        <textarea id="motivo" rows="4" placeholder="Perché vuoi unirti agli EMS?" required></textarea>
 
         <button type="submit" id="btnInvia">Invia Candidatura</button>
     </form>
-</div>
-
-<script>
-    const webhookURL = "https://discord.com/api/webhooks/1466551655137939712/OvXrUFRNPUfnlU829bG4v7wMBcjCsDYicLyDpr2sSvsky9yxW9n1bSYj0n_falz1pHdL";
-
-    document.getElementById('emsForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const btn = document.getElementById('btnInvia');
-        btn.innerText = "TRASMISSIONE IN CORSO...";
-        btn.disabled = true;
-
-        const dati = {
-            username: "Dipartimento Medico City Life",
-            avatar_url: "https://i.imgur.com/4E7S7uM.png",
-            embeds: [{
-                title: "🚑 NUOVA RICHIESTA DI ARRUOLAMENTO",
-                description: "È stata ricevuta una nuova candidatura per il dipartimento EMS.",
-                color: 16711680,
-                fields: [
-                    { name: "👤 Nome IC", value: `\`${document.getElementById('nome').value}\``, inline: true },
-                    { name: "🆔 Discord", value: `\`${document.getElementById('discord').value}\``, inline: true },
-                    { name: "📞 Telefono", value: `\`${document.getElementById('telefono').value}\``, inline: true },
-                    { name: "⏰ Orari", value: document.getElementById('orari').value },
-                    { name: "📝 Motivazioni", value: document.getElementById('motivo').value }
-                ],
-                footer: { text: "Portale Reclutamento EMS - City Life" },
-                timestamp: new Date()
-            }]
-        };
-
-        try {
-            const response = await fetch(webhookURL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dati)
-            });
-
-            if (response.ok) {
-                alert("✅ Candidatura inviata correttamente! Presto verrai contattato.");
-                document.getElementById('emsForm').reset();
-            } else {
-                alert("❌ Errore critico di invio. Riprova tra poco.");
-            }
-        } catch (error) {
-            alert("❌ Errore di rete: " + error);
-        } finally {
-            btn.innerText = "Invia Candidatura";
-            btn.disabled = false;
-        }
-    });
-</script>
-
-</body>
-</html>
