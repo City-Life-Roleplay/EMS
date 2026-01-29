@@ -2,82 +2,129 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Bandi EMS - City Life</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMS - City Life Roleplay</title>
     <style>
-        body { background: #1a1a1a; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .form-card { background: #222; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #ff4d4d; width: 400px; border: 1px solid #ff4d4d; text-align: left; }
-        h2 { text-align: center; color: #ff4d4d; letter-spacing: 2px; text-transform: uppercase; }
-        label { font-size: 12px; color: #ff4d4d; font-weight: bold; }
-        input, textarea { width: 100%; padding: 10px; margin: 5px 0 15px 0; background: #333; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #ff4d4d; border: none; color: white; font-weight: bold; cursor: pointer; border-radius: 5px; transition: 0.3s; }
-        button:hover { background: #b30000; }
+        /* COLORI VIOLA E ORO */
+        :root { 
+            --primary-purple: #4b0082; /* Viola scuro */
+            --gold: #d4af37;           /* Oro metallico */
+            --bg-dark: #0a0a0a;        /* Sfondo quasi nero */
+        }
+
+        body, html { margin: 0; padding: 0; height: 100%; background: var(--bg-dark); font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+
+        /* SCHERMATA CARICAMENTO */
+        #loader {
+            position: fixed; width: 100%; height: 100%; background: #000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 999;
+        }
+        #loader img { width: 150px; margin-bottom: 20px; animation: pulse 1.8s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--gold)); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 20px var(--gold)); } 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--gold)); } }
+        .loading-text { color: var(--gold); letter-spacing: 4px; font-size: 14px; text-transform: uppercase; font-weight: bold; }
+
+        /* PAGINA PRINCIPALE */
+        #content { display: none; height: 100vh; justify-content: center; align-items: center; overflow-y: auto; padding: 20px; box-sizing: border-box; }
+        .form-card { 
+            background: #151515; padding: 40px; border-radius: 15px; 
+            border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            width: 100%; max-width: 450px; text-align: left;
+        }
+        h2 { text-align: center; color: var(--gold); text-transform: uppercase; margin-top: 0; font-size: 24px; border-bottom: 2px solid var(--primary-purple); padding-bottom: 10px; }
+        label { color: var(--gold); font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        input, textarea { 
+            width: 100%; padding: 12px; margin: 8px 0 20px 0; 
+            background: #1e1e1e; border: 1px solid var(--primary-purple); color: white; 
+            border-radius: 5px; box-sizing: border-box; 
+        }
+        input:focus, textarea:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 5px var(--gold); }
+        
+        button { 
+            width: 100%; padding: 15px; background: var(--primary-purple); 
+            border: 1px solid var(--gold); color: var(--gold); font-weight: bold; cursor: pointer; 
+            border-radius: 5px; text-transform: uppercase; transition: 0.3s; font-size: 16px;
+        }
+        button:hover { background: var(--gold); color: black; box-shadow: 0 0 20px var(--gold); }
     </style>
 </head>
 <body>
 
-<div class="form-card">
-    <h2>BANDI EMS</h2>
-    <form id="emsForm">
-        <label>NOME E COGNOME IC</label>
-        <input type="text" id="nome" placeholder="Es: Mario Rossi" required>
+    <div id="loader">
+        <img src="logo.png" alt="City Life Logo">
+        <div class="loading-text">City Life Roleplay...</div>
+    </div>
 
-        <label>ID DISCORD</label>
-        <input type="text" id="discord" placeholder="Es: utente#0000" required>
+    <div id="content">
+        <div class="form-card">
+            <h2>🚑 Candidatura EMS</h2>
+            <form id="emsForm">
+                <label>Nome e Cognome IC</label>
+                <input type="text" id="nome" placeholder="Esempio: Mario Rossi" required>
 
-        <label>NUMERO DI TELEFONO IC</label>
-        <input type="text" id="telefono" required>
+                <label>ID Discord</label>
+                <input type="text" id="discord" placeholder="Esempio: avion#0000" required>
 
-        <label>DISPONIBILITÀ ORARIA</label>
-        <input type="text" id="orari" placeholder="Es: Pomeriggio e Sera" required>
+                <label>Disponibilità Oraria</label>
+                <input type="text" id="orari" placeholder="Es: 15:00 - 23:00" required>
 
-        <label>ESPERIENZE E MOTIVAZIONI</label>
-        <textarea id="esperienze" rows="4" required></textarea>
+                <label>Esperienze e Motivazioni</label>
+                <textarea id="esperienze" rows="5" placeholder="Parlaci di te e perché vorresti unirti..." required></textarea>
 
-        <button type="submit">INVIA CANDIDATURA</button>
-    </form>
-</div>
+                <button type="submit">Invia Candidatura</button>
+            </form>
+        </div>
+    </div>
 
-<script>
-    // INSERISCI QUI SOTTO IL TUO LINK WEBHOOK DI DISCORD
-    const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1466551655137939712/OvXrUFRNPUfnlU829bG4v7wMBcjCsDYicLyDpr2sSvsky9yxW9n1bSYj0n_falz1pHdL";
-
-    document.getElementById('emsForm').onsubmit = async (e) => {
-        e.preventDefault();
-        
-        const payload = {
-            embeds: [{
-                title: "🚑 NUOVA CANDIDATURA EMS",
-                color: 16724813,
-                fields: [
-                    { name: "Nome IC", value: document.getElementById('nome').value },
-                    { name: "Discord", value: document.getElementById('discord').value },
-                    { name: "Telefono", value: document.getElementById('telefono').value },
-                    { name: "Orari", value: document.getElementById('orari').value },
-                    { name: "Motivazioni", value: document.getElementById('esperienze').value }
-                ],
-                footer: { text: "City Life Roleplay" }
-            }]
+    <script>
+        // Gestione Caricamento
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('content').style.display = 'flex';
+            }, 2500); // 2.5 secondi di caricamento
         };
 
-        try {
-            const response = await fetch(DISCORD_WEBHOOK, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
+        // Configurazione Discord
+        const WEBHOOK_URL = "METTI_IL_TUO_WEBHOOK_QUI";
 
-            if (response.ok) {
-                alert("Candidatura inviata correttamente!");
-                document.getElementById('emsForm').reset();
-            } else {
-                alert("Errore nell'invio. Verifica il Webhook.");
+        document.getElementById('emsForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerHTML = "INVIANDO...";
+            btn.disabled = true;
+
+            const data = {
+                embeds: [{
+                    title: "🚑 NUOVA CANDIDATURA EMS",
+                    color: 13936183, // Colore Oro per Discord
+                    fields: [
+                        { name: "👤 Nome IC", value: document.getElementById('nome').value, inline: true },
+                        { name: "🆔 Discord", value: document.getElementById('discord').value, inline: true },
+                        { name: "⏰ Orari", value: document.getElementById('orari').value },
+                        { name: "📜 Motivazioni", value: document.getElementById('esperienze').value }
+                    ],
+                    footer: { text: "Sistema Candidature City Life" }
+                }]
+            };
+
+            try {
+                const res = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+                if(res.ok) {
+                    alert("✅ Candidatura inviata correttamente!");
+                    e.target.reset();
+                } else {
+                    alert("❌ Errore: Controlla se il Webhook è corretto.");
+                }
+            } catch (err) {
+                alert("❌ Errore di connessione!");
             }
-        } catch (err) {
-            alert("Errore di connessione. Verifica AdBlock.");
-        }
-    };
-</script>
-
+            btn.innerHTML = "Invia Candidatura";
+            btn.disabled = false;
+        };
+    </script>
 </body>
 </html>
-
