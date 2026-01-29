@@ -104,3 +104,57 @@
 
         <button type="submit" id="btnInvia">Invia Candidatura</button>
     </form>
+</div>
+
+<script>
+    // Webhook fornito dall'utente
+    const webhookURL = "https://discord.com/api/webhooks/1466551655137939712/OvXrUFRNPUfnlU829bG4v7wMBcjCsDYicLyDpr2sSvsky9yxW9n1bSYj0n_falz1pHdL";
+
+    document.getElementById('emsForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('btnInvia');
+        btn.innerText = "TRASMISSIONE...";
+        btn.disabled = true;
+
+        const dati = {
+            username: "Dipartimento Medico City Life",
+            embeds: [{
+                title: "🚑 NUOVA CANDIDATURA EMS",
+                color: 16711680,
+                fields: [
+                    { name: "👤 Nome IC", value: document.getElementById('nome').value, inline: true },
+                    { name: "🆔 Discord", value: document.getElementById('discord').value, inline: true },
+                    { name: "📞 Telefono", value: document.getElementById('telefono').value, inline: true },
+                    { name: "⏰ Orari", value: document.getElementById('orari').value, inline: true },
+                    { name: "📝 Motivazioni", value: document.getElementById('motivo').value }
+                ],
+                footer: { text: "City Life Roleplay" },
+                timestamp: new Date()
+            }]
+        };
+
+        try {
+            const response = await fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dati)
+            });
+
+            if (response.ok) {
+                // Reindirizzamento immediato alla pagina storia dopo l'invio
+                window.location.href = "storia.html"; 
+            } else {
+                alert("Errore nell'invio. Verifica il webhook.");
+                btn.disabled = false;
+                btn.innerText = "Invia Candidatura";
+            }
+        } catch (error) {
+            alert("Errore tecnico: " + error);
+            btn.disabled = false;
+            btn.innerText = "Invia Candidatura";
+        }
+    });
+</script>
+
+</body>
+</html>
