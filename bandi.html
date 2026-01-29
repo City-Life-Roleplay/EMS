@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Bandi EMS - City Life Roleplay</title>
+    <style>
+        :root { --viola: #4b0082; --oro: #d4af37; --nero: #0a0a0a; }
+        body, html { margin: 0; padding: 0; min-height: 100vh; background-color: var(--nero); font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; }
+        
+        .background-logo { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; opacity: 0.1; z-index: 0; pointer-events: none; }
+        
+        .main-container { position: relative; z-index: 1; width: 100%; max-width: 480px; padding: 20px; text-align: center; }
+        .top-logo { width: 120px; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--oro)); }
+        
+        .bando-card { background: rgba(20, 20, 20, 0.95); border: 2px solid var(--oro); border-radius: 15px; padding: 30px; box-shadow: 0 0 40px rgba(212, 175, 55, 0.2); }
+        h2 { color: var(--oro); text-transform: uppercase; margin-bottom: 20px; }
+        
+        .form-group { text-align: left; margin-bottom: 15px; }
+        label { color: var(--oro); font-size: 11px; font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px; }
+        input, textarea { width: 100%; padding: 12px; background: rgba(40, 40, 40, 0.8); border: 1px solid var(--viola); color: white; border-radius: 6px; box-sizing: border-box; }
+        
+        button { width: 100%; padding: 15px; background: var(--viola); color: var(--oro); border: 1px solid var(--oro); border-radius: 6px; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        button:hover { background: var(--oro); color: black; box-shadow: 0 0 15px var(--oro); }
+        
+        .back-link { margin-top: 20px; display: block; color: var(--oro); text-decoration: none; font-size: 13px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <img src="logo.png" class="background-logo">
+    <div class="main-container">
+        <img src="logo.png" class="top-logo">
+        <div class="bando-card">
+            <h2>Modulo Candidatura</h2>
+            <form id="emsForm">
+                <div class="form-group"><label>Nome IC</label><input type="text" id="nome" required></div>
+                <div class="form-group"><label>ID Discord</label><input type="text" id="discord" required></div>
+                <div class="form-group"><label>Orari</label><input type="text" id="orari" required></div>
+                <div class="form-group"><label>Motivazioni</label><textarea id="esperienze" rows="4" required></textarea></div>
+                <button type="submit">Invia Bando</button>
+            </form>
+        </div>
+        <a href="index.html" class="back-link">← Torna alla Home EMS</a>
+    </div>
+
+    <script>
+        const DISCORD_WEBHOOK = "INSERISCI_QUI_IL_TUO_WEBHOOK";
+        document.getElementById('emsForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerHTML = "INVIO...";
+            const data = { embeds: [{ title: "🚑 CANDIDATURA", color: 13936183, fields: [
+                { name: "Nome IC", value: document.getElementById('nome').value },
+                { name: "Discord", value: document.getElementById('discord').value },
+                { name: "Motivazioni", value: document.getElementById('esperienze').value }
+            ]}]};
+            await fetch(DISCORD_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            alert("Inviato!");
+            btn.innerHTML = "Invia Bando";
+            e.target.reset();
+        };
+    </script>
+</body>
+</html>
