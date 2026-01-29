@@ -2,73 +2,15 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bandi EMS - City Life Roleplay</title>
+    <title>Bandi EMS - City Life</title>
     <style>
-        body { 
-            background: #1a1a1a; 
-            color: white; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            margin: 0; 
-        }
-        .form-card { 
-            background: #222; 
-            padding: 30px; 
-            border-radius: 15px; 
-            box-shadow: 0 0 20px #ff4d4d; 
-            width: 100%;
-            max-width: 400px; 
-            border: 1px solid #ff4d4d; 
-        }
-        h2 { 
-            text-align: center; 
-            color: #ff4d4d; 
-            letter-spacing: 2px; 
-            text-transform: uppercase;
-            margin-top: 0;
-        }
-        label { 
-            font-size: 12px; 
-            color: #ff4d4d; 
-            font-weight: bold; 
-            display: block;
-            margin-bottom: 5px;
-        }
-        input, textarea { 
-            width: 100%; 
-            padding: 12px; 
-            margin-bottom: 15px; 
-            background: #333; 
-            border: 1px solid #444; 
-            color: white; 
-            border-radius: 5px; 
-            box-sizing: border-box; 
-            font-size: 14px;
-        }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #ff4d4d;
-        }
-        button { 
-            width: 100%; 
-            padding: 15px; 
-            background: #ff4d4d; 
-            border: none; 
-            color: white; 
-            font-weight: bold; 
-            cursor: pointer; 
-            border-radius: 5px; 
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-        button:hover { 
-            background: #b30000; 
-            box-shadow: 0 0 10px #ff4d4d;
-        }
+        body { background: #1a1a1a; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .form-card { background: #222; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #ff4d4d; width: 400px; border: 1px solid #ff4d4d; text-align: left; }
+        h2 { text-align: center; color: #ff4d4d; letter-spacing: 2px; text-transform: uppercase; }
+        label { font-size: 12px; color: #ff4d4d; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; margin: 5px 0 15px 0; background: #333; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #ff4d4d; border: none; color: white; font-weight: bold; cursor: pointer; border-radius: 5px; transition: 0.3s; }
+        button:hover { background: #b30000; }
     </style>
 </head>
 <body>
@@ -77,10 +19,64 @@
     <h2>BANDI EMS</h2>
     <form id="emsForm">
         <label>NOME E COGNOME IC</label>
-        <input type="text" id="nome" placeholder="Esempio: Mario Rossi" required>
+        <input type="text" id="nome" placeholder="Es: Mario Rossi" required>
 
         <label>ID DISCORD</label>
-        <input type="text" id="discord" placeholder="Esempio: utente#0000" required>
+        <input type="text" id="discord" placeholder="Es: utente#0000" required>
 
         <label>NUMERO DI TELEFONO IC</label>
-        <input type="text" id="telefono" placeholder="Es
+        <input type="text" id="telefono" required>
+
+        <label>DISPONIBILITÀ ORARIA</label>
+        <input type="text" id="orari" placeholder="Es: Pomeriggio e Sera" required>
+
+        <label>ESPERIENZE E MOTIVAZIONI</label>
+        <textarea id="esperienze" rows="4" required></textarea>
+
+        <button type="submit">INVIA CANDIDATURA</button>
+    </form>
+</div>
+
+<script>
+    // INSERISCI QUI SOTTO IL TUO LINK WEBHOOK DI DISCORD
+    const DISCORD_WEBHOOK = "IL_TUO_WEBHOOK_QUI";
+
+    document.getElementById('emsForm').onsubmit = async (e) => {
+        e.preventDefault();
+        
+        const payload = {
+            embeds: [{
+                title: "🚑 NUOVA CANDIDATURA EMS",
+                color: 16724813,
+                fields: [
+                    { name: "Nome IC", value: document.getElementById('nome').value },
+                    { name: "Discord", value: document.getElementById('discord').value },
+                    { name: "Telefono", value: document.getElementById('telefono').value },
+                    { name: "Orari", value: document.getElementById('orari').value },
+                    { name: "Motivazioni", value: document.getElementById('esperienze').value }
+                ],
+                footer: { text: "City Life Roleplay" }
+            }]
+        };
+
+        try {
+            const response = await fetch(DISCORD_WEBHOOK, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert("Candidatura inviata correttamente!");
+                document.getElementById('emsForm').reset();
+            } else {
+                alert("Errore nell'invio. Verifica il Webhook.");
+            }
+        } catch (err) {
+            alert("Errore di connessione. Verifica AdBlock.");
+        }
+    };
+</script>
+
+</body>
+</html>
