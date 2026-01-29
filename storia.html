@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storia EMS - City Life Roleplay</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            color: #eeeeee;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* HEADER CON SFUMATURA DEL SERVER */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.imgur.com/your-background.jpg'); /* Puoi mettere una foto dell'ospedale */
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 4px solid #ff4d4d;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            color: #ff4d4d;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+            margin: 0;
+        }
+
+        /* CONTENUTO */
+        .content {
+            max-width: 900px;
+            margin: -50px auto 50px;
+            padding: 40px;
+            background: #151515;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+        }
+
+        .section-title {
+            color: #ff4d4d;
+            border-left: 4px solid #ff4d4d;
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+
+        .highlight {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        /* CARD DELLE MISSIONI */
+        .grid-missioni {
+            display: grid;
+            grid-template-columns: 1-1;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            border-bottom: 3px solid #ff4d4d;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.8em;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #ff4d4d;
+            text-decoration: none;
+            border: 1px solid #ff4d4d;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: #ff4d4d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>VALORE • SACRIFICIO • VITA</h1>
+        <p>Dipartimento di Emergenza Medica di Los Santos</p>
+    </div>
+
+    <div class="content">
+        <h2 class="section-title">La Nostra Storia</h2>
+        <p>Fondata nel cuore di Los Santos, la centrale <span class="highlight">EMS di City Life</span> nasce con un unico obiettivo: non lasciare nessuno indietro. In una città che non dorme mai, dove il pericolo è dietro ogni angolo, noi siamo l'ultima linea di difesa tra la vita e la morte.</p>
+
+        <p>Ogni sirena che senti è una promessa che facciamo ai cittadini. Non siamo solo medici, siamo fratelli e sorelle legati dal giuramento di soccorrere chiunque, in qualunque situazione, dalle sparatorie a Sandy Shores agli incidenti a Legion Square.</p>
+
+        <div class="grid-missioni">
+            <div class="card">
+                <h3>🚑 Soccorso Rapido</h3>
+                <p>Interveniamo in meno di 3 minuti in tutta la giurisdizione, garantendo cure immediate.</p>
+            </div>
+            <div class="card">
+                <h3>🚁 Air Support</h3>
+                <p>Le nostre unità aeree raggiungono le vette di Mount Chiliad per salvataggi estremi.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Cosa significa essere EMS?</h2>
+        <p>Significa avere il sangue freddo quando tutti intorno perdono la calma. Significa guidare un'ambulanza a tutta velocità nel traffico di Power Street sapendo che ogni secondo conta. <span class="highlight">Salviamo vite, ogni singolo giorno.</span></p>
+
+        <center>
+            <a href="index.html" class="btn-back">Torna ai Bandi</a>
+        </center>
+    </div>
+
+    <footer>
+        &copy; 2026 City Life Roleplay - Emergency Medical Services
+    </footer>
+
+</body>
+</html>
