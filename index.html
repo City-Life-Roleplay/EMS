@@ -3,123 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMS - Portale Candidature</title>
+    <title>Centrale EMS - City Life Roleplay</title>
     <style>
-        /* Sfondo e basi */
-        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; overflow-x: hidden; }
-
-        /* SCHERMATA INIZIALE (Splash Screen) */
-        #splash-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 9999;
-            transition: opacity 1s ease-out, visibility 1s;
+        /* SFONDO E LAYOUT GENERALI */
+        body { 
+            background: radial-gradient(circle, #1a0a0a 0%, #0a0a0a 100%); 
+            color: white; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
         }
-        #splash-logo {
-            width: 200px; /* Regola la grandezza del logo */
-            animation: pulse 2s infinite;
+
+        /* LOGO ANIMATO */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-ems {
+            width: 120px;
+            filter: drop-shadow(0 0 10px rgba(255, 77, 77, 0.6));
+            animation: pulse 2.5s infinite ease-in-out;
         }
         @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            50% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0.9); opacity: 0.7; }
+            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.4)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(255, 77, 77, 0.8)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.4)); }
         }
 
-        /* CONTENUTO PAGINA (nascosto all'inizio) */
-        #main-content { opacity: 0; transition: opacity 1.5s ease-in; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        /* CONTENITORE NEON */
+        .container { 
+            background: rgba(30, 30, 30, 0.95); 
+            padding: 35px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 30px rgba(255, 77, 77, 0.2); 
+            width: 100%; 
+            max-width: 500px; 
+            border: 1px solid rgba(255, 77, 77, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
 
-        /* Stili del Form (come prima) */
-        .container { width: 100%; max-width: 600px; }
-        .status-box { background: #1e1e1e; border: 1px solid #333; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; border-left: 5px solid #2ecc71; }
-        .status-open { color: #2ecc71; font-weight: bold; }
-        .form-container { background: #1e1e1e; padding: 30px; border-radius: 8px; border-top: 5px solid #e74c3c; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        h1 { color: #e74c3c; text-align: center; text-transform: uppercase; letter-spacing: 2px; }
-        label { display: block; margin-top: 20px; color: #e74c3c; font-weight: bold; font-size: 0.8em; text-transform: uppercase; }
-        input, textarea { width: 100%; padding: 12px; margin-top: 8px; border-radius: 4px; border: 1px solid #333; background: #2b2b2b; color: white; box-sizing: border-box; }
-        button { width: 100%; padding: 15px; margin-top: 30px; background: #e74c3c; border: none; color: white; font-weight: bold; cursor: pointer; border-radius: 4px; transition: 0.3s; }
-        button:hover { background: #c0392b; transform: translateY(-2px); }
+        /* INDICATORE BANDI APERTI */
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 255, 100, 0.1);
+            color: #00ff64;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            border: 1px solid #00ff64;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 { text-align: center; color: #ff4d4d; margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
+        p.subtitle { text-align: center; color: #888; font-size: 0.9em; margin-bottom: 25px; }
+
+        label { display: block; margin-bottom: 8px; color: #ff4d4d; font-size: 0.8em; font-weight: bold; text-transform: uppercase; }
+        
+        input, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 20px; 
+            border-radius: 8px; 
+            border: 1px solid #333; 
+            background: #252525; 
+            color: white; 
+            box-sizing: border-box; 
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus, textarea:focus { border-color: #ff4d4d; box-shadow: 0 0 10px rgba(255, 77, 77, 0.3); }
+
+        /* BOTTONE */
+        button { 
+            width: 100%; 
+            padding: 16px; 
+            background: linear-gradient(45deg, #ff4d4d, #b30000); 
+            border: none; 
+            color: white; 
+            font-weight: bold; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: 0.4s; 
+            font-size: 1.1em; 
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+        }
+        button:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 77, 77, 0.5); filter: brightness(1.2); }
+        button:disabled { background: #444; cursor: not-allowed; transform: none; }
     </style>
 </head>
 <body>
 
-    <div id="splash-screen">
-        <img id="splash-logo" src="logo.png" alt="City Life Logo">
-        <h2 style="color: white; margin-top: 20px; letter-spacing: 5px;">CARICAMENTO...</h2>
+<div class="container">
+    <div class="status-badge">● Bandi Aperti</div>
+    
+    <div class="logo-container">
+        <img src="https://i.imgur.com/4E7S7uM.png" class="logo-ems" alt="Logo City Life">
     </div>
 
-    <div id="main-content">
-        <div class="container">
-            <div class="status-box">
-                Stato Attuale: <span class="status-open">● Bandi Aperti</span>
-            </div>
+    <h2>Centrale EMS</h2>
+    <p class="subtitle">Modulo di Arruolamento Medico - City Life</p>
+    
+    <form id="emsForm">
+        <label>Identità In-Game</label>
+        <input type="text" id="nome" placeholder="Nome e Cognome IC" required>
 
-            <div class="form-container">
-                <h1>🚑 Settore EMS</h1>
-                <form id="emsForm">
-                    <label>Nome e Cognome (IC):</label>
-                    <input type="text" id="nome" required>
+        <label>Recapito Discord</label>
+        <input type="text" id="discord" placeholder="Esempio: nomeutente#0000" required>
 
-                    <label>ID Discord:</label>
-                    <input type="text" id="discord" required>
+        <label>Contatto Telefonico IC</label>
+        <input type="text" id="telefono" placeholder="Numero di telefono in città" required>
 
-                    <label>Età (OOC):</label>
-                    <input type="number" id="eta" required>
+        <label>Disponibilità Settimanale</label>
+        <input type="text" id="orari" placeholder="Esempio: Tutti i giorni 15:00-20:00" required>
 
-                    <label>Disponibilità Oraria:</label>
-                    <textarea id="orari" rows="2" required></textarea>
+        <label>Curriculum e Motivazioni</label>
+        <textarea id="motivo" rows="5" placeholder="Perché dovremmo sceglierti? Hai esperienze pregresse?" required></textarea>
 
-                    <label>Esperienze Passate:</label>
-                    <textarea id="esperienze" rows="3" required></textarea>
+        <button type="submit" id="btnInvia">Invia Candidatura</button>
+    </form>
+</div>
 
-                    <label>Perché te?</label>
-                    <textarea id="motivo" rows="3" required></textarea>
+<script>
+    const webhookURL = "https://discord.com/api/webhooks/1466551655137939712/OvXrUFRNPUfnlU829bG4v7wMBcjCsDYicLyDpr2sSvsky9yxW9n1bSYj0n_falz1pHdL";
 
-                    <button type="submit" id="btnInvia">Invia Candidatura</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    document.getElementById('emsForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('btnInvia');
+        btn.innerText = "TRASMISSIONE IN CORSO...";
+        btn.disabled = true;
 
-    <script>
-        // 1. Gestione Splash Screen
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                const content = document.getElementById('main-content');
-                
-                splash.style.opacity = '0';
-                splash.style.visibility = 'hidden';
-                content.style.opacity = '1';
-            }, 3000); // 3 secondi di attesa prima di mostrare il form
-        });
+        const dati = {
+            username: "Dipartimento Medico City Life",
+            avatar_url: "https://i.imgur.com/4E7S7uM.png",
+            embeds: [{
+                title: "🚑 NUOVA RICHIESTA DI ARRUOLAMENTO",
+                description: "È stata ricevuta una nuova candidatura per il dipartimento EMS.",
+                color: 16711680,
+                fields: [
+                    { name: "👤 Nome IC", value: `\`${document.getElementById('nome').value}\``, inline: true },
+                    { name: "🆔 Discord", value: `\`${document.getElementById('discord').value}\``, inline: true },
+                    { name: "📞 Telefono", value: `\`${document.getElementById('telefono').value}\``, inline: true },
+                    { name: "⏰ Orari", value: document.getElementById('orari').value },
+                    { name: "📝 Motivazioni", value: document.getElementById('motivo').value }
+                ],
+                footer: { text: "Portale Reclutamento EMS - City Life" },
+                timestamp: new Date()
+            }]
+        };
 
-        // 2. Invio a Discord
-        const webhookURL = "https://discord.com/api/webhooks/1466551655137939712/OvXrUFRNPUfnlU829bG4v7wMBcjCsDYicLyDpr2sSvsky9yxW9n1bSYj0n_falz1pHdL"
-
-        document.getElementById('emsForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('btnInvia');
-            btn.innerText = "Invio...";
-
-            const data = {
-                embeds: [{
-                    title: "🚑 Nuova Candidatura EMS",
-                    color: 15158332,
-                    fields: [
-                        { name: "👤 Nome IC", value: document.getElementById('nome').value, inline: true },
-                        { name: "🆔 Discord", value: document.getElementById('discord').value, inline: true },
-                        { name: "🎂 Età", value: document.getElementById('eta').value, inline: true },
-                        { name: "⏰ Orari", value: document.getElementById('orari').value },
-                        { name: "🎓 Esperienze", value: document.getElementById('esperienze').value },
-                        { name: "💡 Motivo", value: document.getElementById('motivo').value }
-                    ],
-                    timestamp: new Date()
-                }]
-            };
-
-            fetch(webhookURL, {
+        try {
+            const response = await fetch(webhookURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+                body: JSON.stringify(dati)
+            });
+
+            if (response.ok) {
+                alert("✅ Candidatura inviata correttamente! Presto verrai contattato.");
+                document.getElementById('emsForm').reset();
+            } else {
+                alert("❌ Errore critico di invio. Riprova tra poco.");
+            }
+        } catch (error) {
+            alert("❌ Errore di rete: " + error);
+        } finally {
+            btn.innerText = "Invia Candidatura";
+            btn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>
