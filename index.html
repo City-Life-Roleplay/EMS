@@ -3,54 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centrale EMS | City Life Roleplay</title>
+    <title>Bandi EMS - City Life Roleplay</title>
     <style>
-        :root {
-            --purple-main: #4a148c; /* Viola scuro dal logo */
-            --gold-lion: #d4af37;  /* Oro del leone */
-            --dark-bg: #0a0a0a;
-            --card-bg: #161616;
-            --white: #ffffff;
+        body { 
+            background: #1a1a1a; 
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
         }
-
-        * { box-sizing: border-box; }
-
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--white);
-            scroll-behavior: smooth;
-        }
-
-        /* NAVBAR SUPERIORE */
-        nav {
-            position: fixed;
-            top: 0;
+        .form-card { 
+            background: #222; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 20px #ff4d4d; 
             width: 100%;
-            background: rgba(15, 15, 15, 0.95);
-            padding: 20px 0;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            z-index: 1000;
-            border-bottom: 3px solid var(--purple-main);
+            max-width: 400px; 
+            border: 1px solid #ff4d4d; 
         }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: bold;
+        h2 { 
+            text-align: center; 
+            color: #ff4d4d; 
+            letter-spacing: 2px; 
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
+            margin-top: 0;
         }
+        label { 
+            font-size: 12px; 
+            color: #ff4d4d; 
+            font-weight: bold; 
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 15px; 
+            background: #333; 
+            border: 1px solid #444; 
+            color: white; 
+            border-radius: 5px; 
+            box-sizing: border-box; 
+            font-size: 14px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #ff4d4d;
+        }
+        button { 
+            width: 100%; 
+            padding: 15px; 
+            background: #ff4d4d; 
+            border: none; 
+            color: white; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        button:hover { 
+            background: #b30000; 
+            box-shadow: 0 0 10px #ff4d4d;
+        }
+    </style>
+</head>
+<body>
 
-        nav a:hover { color: var(--gold-lion); }
+<div class="form-card">
+    <h2>BANDI EMS</h2>
+    <form id="emsForm">
+        <label>NOME E COGNOME IC</label>
+        <input type="text" id="nome" placeholder="Esempio: Mario Rossi" required>
 
-        /* HOME / HERO */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center
+        <label>ID DISCORD</label>
+        <input type="text" id="discord" placeholder="Esempio: utente#0000" required>
+
+        <label>NUMERO DI TELEFONO IC</label>
+        <input type="text" id="telefono" placeholder="Es
