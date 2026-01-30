@@ -5,90 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMS - City Life Roleplay</title>
     <style>
-        :root {
-            --purple: #4b0082;
-            --gold: #d4af37;
-            --dark: #0a0a0a;
-        }
-
-        body {
-            margin: 0;
-            background-color: var(--dark);
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .main-container {
-            max-width: 600px;
-            padding: 40px;
-            background: #151515;
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-            border-radius: 20px;
-            text-align: center;
-        }
-
-        /* NESSUN RIQUADRO BLU: USIAMO IL TUO LOGO CARICATO */
-        .logo-header {
-            width: 150px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px var(--gold));
-        }
-
-        h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
-
-        .history-text {
-            font-style: italic;
-            color: #ddd;
-            line-height: 1.6;
-            margin: 30px 0;
-            padding: 20px;
-            border-top: 1px solid var(--purple);
-            border-bottom: 1px solid var(--purple);
-        }
-
+        :root { --purple: #4b0082; --gold: #d4af37; --dark: #0a0a0a; }
+        body { margin: 0; background-color: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; text-align: center; }
+        .header { padding: 60px 20px; background: linear-gradient(to bottom, #1a0033, var(--dark)); border-bottom: 2px solid var(--gold); }
+        .logo-ems { width: 160px; filter: drop-shadow(0 0 10px var(--gold)); margin-bottom: 20px; }
+        .content { max-width: 800px; margin: 40px auto; padding: 20px; }
+        .story { font-style: italic; font-size: 1.2rem; line-height: 1.8; border-left: 3px solid var(--gold); padding: 20px; background: rgba(75, 0, 130, 0.1); border-radius: 0 15px 15px 0; text-align: left; }
         .highlight { color: var(--gold); font-weight: bold; }
-
-        .btn-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 40px;
-            background: var(--purple);
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: bold;
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-
-        .btn-link:hover {
-            background: var(--gold);
-            color: black;
-            box-shadow: 0 0 20px var(--gold);
-        }
+        .btn-bandi { display: inline-block; margin-top: 40px; padding: 18px 50px; background: var(--purple); color: var(--gold); text-decoration: none; font-weight: bold; border: 2px solid var(--gold); border-radius: 8px; transition: 0.4s; text-transform: uppercase; }
+        .btn-bandi:hover { background: var(--gold); color: black; box-shadow: 0 0 25px var(--gold); transform: scale(1.05); }
     </style>
 </head>
 <body>
-
-    <div class="main-container">
-        <img src="logo.png" alt="Logo EMS" class="logo-header">
-        
+    <div class="header">
+        <img src="logo.png" alt="EMS Logo" class="logo-ems">
         <h1>Vespucci Medical Center</h1>
-
-        <div class="history-text">
-            "Nelle notti più buie di <span class="highlight">Los Santos</span>, quando il caos regna sovrano, noi siamo la luce che non si spegne mai. Al Vespucci Medical Center, ogni secondo è una battaglia contro il destino. <br><br>
-            Non siamo solo medici e paramedici; siamo i custodi della vita dei nostri cittadini. Curiamo ferite, ma soprattutto <span class="highlight">doniamo speranza</span> a chi pensa di averla persa. Salvare una vita non è un dovere, è il nostro battito del cuore."
-        </div>
-
-        <p>Sei pronto a fare la differenza e diventare un eroe della città?</p>
-
-        <a href="bandi.html" class="btn-link">VISUALIZZA BANDI APERTI</a>
     </div>
-
+    <div class="content">
+        <div class="story">
+            "Mentre le strade di <span class="highlight">Los Santos</span> si riempiono di ombre, noi siamo la luce che non si spegne mai. Al Vespucci Medical Center, ogni secondo è una promessa mantenuta. Non siamo solo medici, siamo l'ultima difesa tra il battito del cuore e il silenzio. Sei pronto a diventare un <span class="highlight">eroe</span> della città?"
+        </div>
+        <a href="bandi.html" class="btn-bandi">Inizia la tua Missione</a>
+    </div>
 </body>
 </html>
