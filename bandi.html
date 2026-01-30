@@ -2,74 +2,51 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Bandi EMS - Vespucci Medical Center</title>
+    <title>Candidatura EMS - City Life</title>
     <style>
-        :root { --viola: #4b0082; --oro: #d4af37; --nero: #0a0a0a; }
-        body, html { margin: 0; padding: 0; min-height: 100vh; background-color: var(--nero); font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; color: white; }
-        .bg-logo { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70vh; opacity: 0.1; z-index: 0; pointer-events: none; }
-        
-        .container { position: relative; z-index: 1; width: 100%; max-width: 450px; padding: 20px; text-align: center; }
-        .medical-header { width: 100%; margin-bottom: 15px; filter: drop-shadow(0 0 5px var(--oro)); }
-        
-        .bando-card { background: rgba(15, 15, 15, 0.95); border: 2px solid var(--oro); border-radius: 15px; padding: 30px; box-shadow: 0 0 40px rgba(212, 175, 55, 0.2); }
-        .form-group { text-align: left; margin-bottom: 15px; }
-        label { color: var(--oro); font-size: 11px; font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px; }
-        input, textarea { width: 100%; padding: 12px; background: rgba(30, 30, 30, 0.8); border: 1px solid var(--viola); color: white; border-radius: 5px; box-sizing: border-box; }
-        input:focus { border-color: var(--oro); outline: none; }
-        
-        button { width: 100%; padding: 15px; background: var(--viola); color: var(--oro); border: 1px solid var(--oro); border-radius: 5px; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-        button:hover { background: var(--oro); color: black; box-shadow: 0 0 15px var(--oro); }
-        
-        .home-link { margin-top: 20px; display: inline-block; color: var(--oro); text-decoration: none; font-size: 13px; font-weight: bold; }
-        .home-link:hover { text-decoration: underline; }
+        :root { --purple: #4b0082; --gold: #d4af37; --dark: #0a0a0a; }
+        body { background-color: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .form-container { background: #151515; padding: 30px; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 25px rgba(212, 175, 55, 0.3); width: 100%; max-width: 450px; text-align: center; }
+        .form-logo { width: 100px; margin-bottom: 15px; filter: drop-shadow(0 0 5px var(--gold)); }
+        h2 { color: var(--gold); text-transform: uppercase; margin-bottom: 25px; border-bottom: 1px solid var(--purple); padding-bottom: 10px; }
+        label { display: block; text-align: left; color: var(--gold); font-size: 12px; font-weight: bold; margin-top: 15px; }
+        input, textarea { width: 100%; padding: 12px; margin-top: 5px; background: #222; border: 1px solid var(--purple); color: white; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; margin-top: 25px; background: var(--purple); color: var(--gold); border: 1px solid var(--gold); font-weight: bold; cursor: pointer; border-radius: 5px; text-transform: uppercase; transition: 0.3s; }
+        button:hover { background: var(--gold); color: black; box-shadow: 0 0 15px var(--gold); }
+        .back-link { display: block; margin-top: 20px; color: #666; text-decoration: none; font-size: 12px; }
     </style>
 </head>
 <body>
-    <img src="logo.png" class="bg-logo">
-    <div class="container">
-        <img src="https://i.postimg.cc/mDByYn7B/image-bafb70.png" class="medical-header">
-        <div class="bando-card">
-            <h2 style="color: var(--oro); margin-top: 0;">MODULO CANDIDATURA</h2>
-            <form id="emsForm">
-                <div class="form-group"><label>Nome e Cognome IC</label><input type="text" id="nome" required></div>
-                <div class="form-group"><label>ID Discord</label><input type="text" id="discord" required></div>
-                <div class="form-group"><label>Esperienze e Motivazioni</label><textarea id="motivazioni" rows="4" required></textarea></div>
-                <button type="submit">Invia Candidatura</button>
-            </form>
-        </div>
-        <a href="index.html" class="home-link">← Torna alla Home Vespucci</a>
-    </div>
-
-    <script>
-        const WEBHOOK_URL = "https://discord.com/api/webhooks/1466551655137939712/OvXrUFRNPUfnlU829bG4v7wMBcjCsDYicLyDpr2sSvsky9yxW9n1bSYj0n_falz1pHdL"; // INCOLLA QUI IL LINK DI DISCORD
-
-        document.getElementById('emsForm').onsubmit = async (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.innerHTML = "INVIO...";
-            btn.disabled = true;
-
-            const data = {
-                embeds: [{
-                    title: "🚑 NUOVA CANDIDATURA EMS",
-                    color: 4915330,
-                    fields: [
-                        { name: "Nome IC", value: document.getElementById('nome').value },
-                        { name: "Discord", value: document.getElementById('discord').value },
-                        { name: "Motivazioni", value: document.getElementById('motivazioni').value }
-                    ]
-                }]
-            };
-
-            try {
-                await fetch(WEBHOOK_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
-                alert("Candidatura inviata con successo!");
-                e.target.reset();
-            } catch (err) { alert("Errore nell'invio."); }
-            
-            btn.innerHTML = "Invia Candidatura";
-            btn.disabled = false;
-        };
-    </script>
+<div class="form-container">
+    <img src="logo.png" alt="EMS" class="form-logo">
+    <h2>Modulo Candidatura</h2>
+    <form id="emsForm">
+        <label>NOME E COGNOME IC</label>
+        <input type="text" id="nome" required>
+        <label>ID DISCORD</label>
+        <input type="text" id="discord" required>
+        <label>NUMERO DI TELEFONO IC</label>
+        <input type="text" id="telefono" required>
+        <label>ESPERIENZE E MOTIVAZIONI</label>
+        <textarea id="motivazioni" rows="4" required></textarea>
+        <button type="submit">Invia Candidatura</button>
+    </form>
+    <a href="index.html" class="back-link">← Torna alla Home</a>
+</div>
+<script>
+    const WEBHOOK_URL = "https://discord.com/api/webhooks/1466551655137939712/OvXrUFRNPUfnlU829bG4v7wMBcjCsDYicLyDpr2sSvsky9yxW9n1bSYj0n_falz1pHdL"; // <--- INCOLLA QUI IL TUO LINK DISCORD
+    document.getElementById('emsForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const data = { embeds: [{ title: "🚑 NUOVA CANDIDATURA EMS", color: 13936183, fields: [
+            { name: "Nome IC", value: document.getElementById('nome').value },
+            { name: "Discord", value: document.getElementById('discord').value },
+            { name: "Telefono", value: document.getElementById('telefono').value },
+            { name: "Motivazioni", value: document.getElementById('motivazioni').value }
+        ]}]};
+        await fetch(WEBHOOK_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+        alert("Candidatura inviata!");
+        e.target.reset();
+    };
+</script>
 </body>
 </html>
