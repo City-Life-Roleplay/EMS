@@ -9,7 +9,7 @@
         .form-container { background: #151515; padding: 30px; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 25px rgba(212, 175, 55, 0.3); width: 100%; max-width: 450px; text-align: center; }
         .form-logo { width: 100px; margin-bottom: 15px; filter: drop-shadow(0 0 5px var(--gold)); }
         h2 { color: var(--gold); text-transform: uppercase; margin-bottom: 25px; border-bottom: 1px solid var(--purple); padding-bottom: 10px; }
-        label { display: block; text-align: left; color: var(--gold); font-size: 12px; font-weight: bold; margin-top: 15px; }
+        label { display: block; text-align: left; color: var(--gold); font-size: 11px; font-weight: bold; margin-top: 15px; }
         input, textarea { width: 100%; padding: 12px; margin-top: 5px; background: #222; border: 1px solid var(--purple); color: white; border-radius: 5px; box-sizing: border-box; }
         button { width: 100%; padding: 15px; margin-top: 25px; background: var(--purple); color: var(--gold); border: 1px solid var(--gold); font-weight: bold; cursor: pointer; border-radius: 5px; text-transform: uppercase; transition: 0.3s; }
         button:hover { background: var(--gold); color: black; box-shadow: 0 0 15px var(--gold); }
@@ -34,7 +34,7 @@
     <a href="index.html" class="back-link">← Torna alla Home</a>
 </div>
 <script>
-    const WEBHOOK_URL = "https://discord.com/api/webhooks/1466551655137939712/OvXrUFRNPUfnlU829bG4v7wMBcjCsDYicLyDpr2sSvsky9yxW9n1bSYj0n_falz1pHdL"; // <--- INCOLLA QUI IL TUO LINK DISCORD
+    const WEBHOOK_URL = "https://discord.com/api/webhooks/1466551655137939712/OvXrUFRNPUfnlU829bG4v7wMBcjCsDYicLyDpr2sSvsky9yxW9n1bSYj0n_falz1pHdL"; 
     document.getElementById('emsForm').onsubmit = async (e) => {
         e.preventDefault();
         const data = { embeds: [{ title: "🚑 NUOVA CANDIDATURA EMS", color: 13936183, fields: [
@@ -43,9 +43,9 @@
             { name: "Telefono", value: document.getElementById('telefono').value },
             { name: "Motivazioni", value: document.getElementById('motivazioni').value }
         ]}]};
-        await fetch(WEBHOOK_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
-        alert("Candidatura inviata!");
-        e.target.reset();
+        const res = await fetch(WEBHOOK_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+        if(res.ok) { alert("Candidatura inviata!"); e.target.reset(); }
+        else { alert("Errore nel Webhook!"); }
     };
 </script>
 </body>
