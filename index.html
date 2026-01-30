@@ -3,167 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vespucci Medical Center - Los Santos EMS</title>
+    <title>EMS - City Life Roleplay</title>
     <style>
         :root {
             --purple: #4b0082;
             --gold: #d4af37;
-            --white: #ffffff;
-            --dark: #0f0f0f;
+            --dark: #0a0a0a;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--dark);
-            color: var(--white);
-            line-height: 1.6;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 60vh;
-            background: linear-gradient(rgba(75, 0, 130, 0.7), rgba(15, 15, 15, 1)), url('logo.png'); /* Usa il tuo logo come sfondo sfumato */
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-bottom: 3px solid var(--gold);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(212, 175, 55, 0.5);
-        }
-
-        /* Storia ed Empatia */
-        .story-section {
-            padding: 50px 20px;
-            max-width: 900px;
-            margin: 0 auto;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
             text-align: center;
         }
 
-        .story-section h2 {
-            color: var(--gold);
-            font-size: 2rem;
+        /* HEADER SENZA RIQUADRO BLU */
+        .header {
+            padding: 40px 20px;
+            background: linear-gradient(to bottom, #1a0033, var(--dark));
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .logo-ems {
+            width: 180px;
+            filter: drop-shadow(0 0 10px var(--gold));
             margin-bottom: 20px;
         }
 
-        .story-text {
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #ccc;
-            border-left: 4px solid var(--gold);
-            padding-left: 20px;
-            margin-bottom: 40px;
-        }
+        h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; margin: 0; }
 
-        /* Valori */
-        .values {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
-        }
-
-        .value-card {
-            background: #1a1a1a;
-            border: 1px solid var(--purple);
+        /* SEZIONE STORIA ED EMPATIA */
+        .content-section {
+            max-width: 800px;
+            margin: 40px auto;
             padding: 20px;
-            width: 250px;
-            border-radius: 10px;
-            margin: 10px;
-            transition: 0.3s;
+            line-height: 1.8;
         }
 
-        .value-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
+        .story-box {
+            border-left: 3px solid var(--gold);
+            padding-left: 30px;
+            text-align: left;
+            font-style: italic;
+            background: rgba(75, 0, 130, 0.1);
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
         }
 
-        .value-card h3 {
-            color: var(--gold);
-            margin-top: 0;
-        }
+        .highlight { color: var(--gold); font-weight: bold; }
 
-        /* Bottone Bandi */
-        .cta-button {
+        /* BOTTONE BANDI */
+        .cta-container { margin-top: 50px; }
+
+        .btn-bandi {
             display: inline-block;
-            background-color: var(--purple);
+            padding: 15px 45px;
+            background: var(--purple);
             color: var(--gold);
-            padding: 15px 40px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
             border: 2px solid var(--gold);
-            border-radius: 50px;
-            transition: 0.3s;
+            border-radius: 5px;
+            transition: 0.4s;
             text-transform: uppercase;
         }
 
-        .cta-button:hover {
-            background-color: var(--gold);
-            color: var(--dark);
-            box-shadow: 0 0 20px var(--gold);
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            font-size: 0.8rem;
-            color: #666;
-            border-top: 1px solid #222;
+        .btn-bandi:hover {
+            background: var(--gold);
+            color: black;
+            box-shadow: 0 0 25px var(--gold);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <h1>EMS Los Santos</h1>
-        <p>Vespucci Medical Center - Il cuore pulsante della città</p>
-    </section>
+    <div class="header">
+        <img src="logo.png" alt="EMS Logo" class="logo-ems">
+        <h1>Vespucci Medical Center</h1>
+    </div>
 
-    <section class="story-section">
-        <h2>La nostra Missione</h2>
-        <div class="story-text">
-            "Mentre Los Santos dorme sotto le luci dei neon, noi siamo le ombre che vegliano. 
-            Tra le lamiere di un incidente sulla Great Ocean Highway o nel silenzio di un vicolo di South Central, 
-            il nostro unico obiettivo è strappare una vita al destino. Non siamo solo medici, siamo l'ultima speranza 
-            tra il battito del cuore e il silenzio eterno."
+    <div class="content-section">
+        <div class="story-box">
+            "Mentre le strade di <span class="highlight">Los Santos</span> si riempiono di caos, c'è un luogo dove il tempo si ferma per combattere la morte. Al Vespucci Medical Center, non guardiamo il colore della tua maglia o quanti soldi hai in tasca. 
+            <br><br>
+            Siamo l'ultima barriera tra la vita e il silenzio. Ogni sirena che senti è una promessa: <span class="highlight">non sarai solo</span>. Siamo padri, madri, fratelli, ma soprattutto siamo soccorritori pronti a dare tutto per un battito di cuore in più."
         </div>
 
-        <div class="values">
-            <div class="value-card">
-                <h3>🚑 Rapidità</h3>
-                <p>Ogni secondo conta. La nostra risposta è fulminea, perché la vita non aspetta.</p>
-            </div>
-            <div class="value-card">
-                <h3>🤝 Empatia</h3>
-                <p>Dietro ogni paziente c'è una storia. Curiamo il corpo, sosteniamo l'anima.</p>
-            </div>
-            <div class="value-card">
-                <h3>🏆 Eccellenza</h3>
-                <p>Formazione continua e tecnologie all'avanguardia per garantire il massimo livello di soccorso.</p>
-            </div>
+        <p style="margin-top: 30px;">
+            Essere un membro degli EMS di City Life non è un lavoro, è una vocazione. 
+            Cerchiamo anime coraggiose pronte a correre verso il pericolo mentre gli altri scappano.
+        </p>
+
+        <div class="cta-container">
+            <a href="bandi.html" class="btn-bandi">Entra negli Eroi</a>
         </div>
+    </div>
 
-        <h2>Vuoi fare la differenza?</h2>
-        <p>Siamo alla ricerca di uomini e donne coraggiosi pronti a mettersi in gioco.</p>
-        <br>
-        <a href="bandi.html" class="cta-button">Visualizza Bandi Aperti</a>
-    </section>
-
-    <footer>
-        &copy; 2026 City Life Roleplay - Dipartimento EMS Los Santos. Tutti i diritti riservati.
+    <footer style="margin-top: 100px; color: #444; font-size: 12px; padding-bottom: 20px;">
+        City Life Roleplay - Dipartimento di Emergenza Sanitaria
     </footer>
 
 </body>
