@@ -16,95 +16,79 @@
             background-color: var(--dark);
             color: white;
             font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 600px;
+            padding: 40px;
+            background: #151515;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
             text-align: center;
         }
 
-        /* HEADER SENZA RIQUADRO BLU */
-        .header {
-            padding: 40px 20px;
-            background: linear-gradient(to bottom, #1a0033, var(--dark));
-            border-bottom: 2px solid var(--gold);
-        }
-
-        .logo-ems {
-            width: 180px;
-            filter: drop-shadow(0 0 10px var(--gold));
+        /* NESSUN RIQUADRO BLU: USIAMO IL TUO LOGO CARICATO */
+        .logo-header {
+            width: 150px;
             margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px var(--gold));
         }
 
-        h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; margin: 0; }
+        h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
 
-        /* SEZIONE STORIA ED EMPATIA */
-        .content-section {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            line-height: 1.8;
-        }
-
-        .story-box {
-            border-left: 3px solid var(--gold);
-            padding-left: 30px;
-            text-align: left;
+        .history-text {
             font-style: italic;
-            background: rgba(75, 0, 130, 0.1);
+            color: #ddd;
+            line-height: 1.6;
+            margin: 30px 0;
             padding: 20px;
-            border-radius: 0 15px 15px 0;
+            border-top: 1px solid var(--purple);
+            border-bottom: 1px solid var(--purple);
         }
 
         .highlight { color: var(--gold); font-weight: bold; }
 
-        /* BOTTONE BANDI */
-        .cta-container { margin-top: 50px; }
-
-        .btn-bandi {
+        .btn-link {
             display: inline-block;
-            padding: 15px 45px;
+            margin-top: 20px;
+            padding: 15px 40px;
             background: var(--purple);
             color: var(--gold);
             text-decoration: none;
             font-weight: bold;
             border: 2px solid var(--gold);
-            border-radius: 5px;
-            transition: 0.4s;
-            text-transform: uppercase;
+            border-radius: 10px;
+            transition: 0.3s;
         }
 
-        .btn-bandi:hover {
+        .btn-link:hover {
             background: var(--gold);
             color: black;
-            box-shadow: 0 0 25px var(--gold);
-            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--gold);
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="logo.png" alt="EMS Logo" class="logo-ems">
+    <div class="main-container">
+        <img src="logo.png" alt="Logo EMS" class="logo-header">
+        
         <h1>Vespucci Medical Center</h1>
-    </div>
 
-    <div class="content-section">
-        <div class="story-box">
-            "Mentre le strade di <span class="highlight">Los Santos</span> si riempiono di caos, c'è un luogo dove il tempo si ferma per combattere la morte. Al Vespucci Medical Center, non guardiamo il colore della tua maglia o quanti soldi hai in tasca. 
-            <br><br>
-            Siamo l'ultima barriera tra la vita e il silenzio. Ogni sirena che senti è una promessa: <span class="highlight">non sarai solo</span>. Siamo padri, madri, fratelli, ma soprattutto siamo soccorritori pronti a dare tutto per un battito di cuore in più."
+        <div class="history-text">
+            "Nelle notti più buie di <span class="highlight">Los Santos</span>, quando il caos regna sovrano, noi siamo la luce che non si spegne mai. Al Vespucci Medical Center, ogni secondo è una battaglia contro il destino. <br><br>
+            Non siamo solo medici e paramedici; siamo i custodi della vita dei nostri cittadini. Curiamo ferite, ma soprattutto <span class="highlight">doniamo speranza</span> a chi pensa di averla persa. Salvare una vita non è un dovere, è il nostro battito del cuore."
         </div>
 
-        <p style="margin-top: 30px;">
-            Essere un membro degli EMS di City Life non è un lavoro, è una vocazione. 
-            Cerchiamo anime coraggiose pronte a correre verso il pericolo mentre gli altri scappano.
-        </p>
+        <p>Sei pronto a fare la differenza e diventare un eroe della città?</p>
 
-        <div class="cta-container">
-            <a href="bandi.html" class="btn-bandi">Entra negli Eroi</a>
-        </div>
+        <a href="bandi.html" class="btn-link">VISUALIZZA BANDI APERTI</a>
     </div>
-
-    <footer style="margin-top: 100px; color: #444; font-size: 12px; padding-bottom: 20px;">
-        City Life Roleplay - Dipartimento di Emergenza Sanitaria
-    </footer>
 
 </body>
 </html>
